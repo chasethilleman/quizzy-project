@@ -1,4 +1,5 @@
 import { decode } from "html-entities";
+import { clsx } from "clsx";
 
 export default function Question(props) {
   const incorrectAnswers = [...props.question.incorrect_answers];
@@ -9,7 +10,16 @@ export default function Question(props) {
 
   function selectAnswer(event) {
     const selectedAnswer = event.target.textContent;
+    const button = event.target;
+    button.classList.add("selected");
+    const buttonContainer = button.parentNode.parentNode;
+    buttonContainer.querySelectorAll("button").forEach((btn) => {
+      if (btn !== button) {
+        btn.classList.remove("selected");
+      }
+    });
     console.log("Selected answer:", selectedAnswer);
+    props.onSelectAnswer(selectedAnswer);
   }
 
   return (
@@ -18,7 +28,12 @@ export default function Question(props) {
       <ul>
         {allAnswers.map((answer, index) => (
           <li key={index}>
-            <button onClick={selectAnswer}>{decode(answer)}</button>
+            <button
+              onClick={selectAnswer}
+              className={clsx({ "is-correct": props.isCorrect })}
+            >
+              {decode(answer)}
+            </button>
           </li>
         ))}
       </ul>
