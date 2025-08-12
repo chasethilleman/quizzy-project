@@ -4,14 +4,6 @@ import { clsx } from "clsx";
 export default function Question(props) {
   function selectAnswer(event) {
     const selectedAnswer = event.target.textContent;
-    const button = event.target;
-    button.classList.add("selected");
-    const buttonContainer = button.parentNode.parentNode;
-    buttonContainer.querySelectorAll("button").forEach((btn) => {
-      if (btn !== button) {
-        btn.classList.remove("selected");
-      }
-    });
     props.onSelectAnswer(selectedAnswer);
   }
 
@@ -23,17 +15,16 @@ export default function Question(props) {
           <li key={index}>
             <button
               onClick={selectAnswer}
-              disabled={props.showResults}
               className={clsx({
+                selected: props.selected === answer,
                 "is-correct":
-                  props.showResults &&
-                  props.selected === props.question.correct_answer &&
-                  props.selected === answer,
+                  props.showResults && answer === props.question.correct_answer,
                 "is-wrong":
                   props.showResults &&
                   props.selected === answer &&
-                  props.selected !== props.question.correct_answer,
+                  answer !== props.question.correct_answer,
               })}
+              disabled={props.showResults}
             >
               {decode(answer)}
             </button>
