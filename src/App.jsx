@@ -21,7 +21,15 @@ function App() {
       if (!data.results || !Array.isArray(data.results)) {
         throw new Error("No questions returned from API.");
       }
-      setQuestions(data.results);
+      const newArray = data.results.map((question) => {
+        const allAnswers = [
+          ...question.incorrect_answers,
+          question.correct_answer,
+        ];
+        question.all_answers = allAnswers.sort(() => Math.random() - 0.5);
+        return question;
+      });
+      setQuestions(newArray);
     } catch (err) {
       setError(err.message);
       setQuestions([]);
