@@ -29,7 +29,12 @@ export default function Quiz(props) {
   return (
     <div className="quiz-container">
       {questionComponents}
-      <button onClick={checkAnswers}>Check Answers</button>
+      <button
+        onClick={checkAnswers}
+        disabled={Object.keys(selectedAnswers).length < props.questions.length}
+      >
+        Check Answers
+      </button>
     </div>
   );
 }
