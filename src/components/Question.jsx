@@ -2,12 +2,6 @@ import { decode } from "html-entities";
 import { clsx } from "clsx";
 
 export default function Question(props) {
-  //   const incorrectAnswers = [...props.question.incorrect_answers];
-  //   const correctAnswer = props.question.correct_answer;
-  //   const randomIndex = Math.floor(Math.random() * (incorrectAnswers.length + 1));
-  //   incorrectAnswers.splice(randomIndex, 0, correctAnswer);
-  //   const allAnswers = incorrectAnswers;
-
   function selectAnswer(event) {
     const selectedAnswer = event.target.textContent;
     const button = event.target;
@@ -18,7 +12,6 @@ export default function Question(props) {
         btn.classList.remove("selected");
       }
     });
-    console.log("Selected answer:", selectedAnswer);
     props.onSelectAnswer(selectedAnswer);
   }
 
@@ -30,7 +23,17 @@ export default function Question(props) {
           <li key={index}>
             <button
               onClick={selectAnswer}
-              className={clsx({ "is-correct": props.isCorrect })}
+              disabled={props.showResults}
+              className={clsx({
+                "is-correct":
+                  props.showResults &&
+                  props.selected === props.question.correct_answer &&
+                  props.selected === answer,
+                "is-wrong":
+                  props.showResults &&
+                  props.selected === answer &&
+                  props.selected !== props.question.correct_answer,
+              })}
             >
               {decode(answer)}
             </button>

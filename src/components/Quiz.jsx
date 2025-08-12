@@ -3,13 +3,14 @@ import Question from "./Question";
 
 export default function Quiz(props) {
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [showResults, setShowResults] = useState(false);
 
   const questionComponents = props.questions.map((question, index) => (
     <Question
       key={index}
       question={question}
+      showResults={showResults}
       selected={selectedAnswers[index]}
-      isCorrect={selectedAnswers[index] === question.correct_answer}
       onSelectAnswer={(answer) => handleSelectAnswer(index, answer)}
     />
   ));
@@ -21,7 +22,9 @@ export default function Quiz(props) {
     }));
   }
 
-  function checkAnswers() {}
+  function checkAnswers() {
+    setShowResults(true);
+  }
 
   return (
     <div className="quiz-container">
