@@ -1,12 +1,60 @@
-# React + Vite
+# Quizzy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Quizzy is a fun and interactive quiz app built with React and Vite. It fetches trivia questions from the Open Trivia Database API and lets users test their knowledge on a variety of topics.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fetches 5 random trivia questions from the Open Trivia Database
+- Multiple choice and true/false questions
+- Select answers and check if you are correct
+- Highlights correct and incorrect answers after submission
+- Confetti animation for a perfect score (using `react-confetti`)
+- Responsive and modern UI
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v16 or higher recommended)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/chasethilleman/quizzy-project.git
+   cd quizzy-project
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the App
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open your browser and go to [http://localhost:5173](http://localhost:5173) to use the app.
+
+## Usage
+
+1. Click "Start Quiz" to begin.
+2. Select an answer for each question.
+3. Click "Check Answers" to see which answers are correct or incorrect.
+4. If you get all answers correct, enjoy a confetti celebration!
+5. Refresh the page to play again with new questions.
+
+## Tech Stack
+
+- React
+- Vite
+- Open Trivia Database API
+- react-confetti
+- clsx
+
+## License
+
+MIT
