@@ -23,7 +23,13 @@ export default function Quiz(props) {
   }
 
   function checkAnswers() {
-    setShowResults(true);
+    if (showResults) {
+      setSelectedAnswers({});
+      props.fetchQuestions();
+      setShowResults(false);
+    } else {
+      setShowResults(true);
+    }
   }
 
   return (
@@ -33,7 +39,7 @@ export default function Quiz(props) {
         onClick={checkAnswers}
         disabled={Object.keys(selectedAnswers).length < props.questions.length}
       >
-        Check Answers
+        {showResults ? "Play Again" : "Check Answers"}
       </button>
     </div>
   );

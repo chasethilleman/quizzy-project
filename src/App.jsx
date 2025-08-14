@@ -34,7 +34,7 @@ function App() {
       setError(err.message);
       setQuestions([]);
     } finally {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 500);
     }
   }
 
@@ -45,13 +45,17 @@ function App() {
 
   return (
     <>
+      {loading && (
+        <div className="loader-container">
+          <span className="loader"></span>
+        </div>
+      )}
       {!isQuizStarted && <Splash startQuiz={startQuiz} />}
-      {isQuizStarted && loading && <div>Loading questions...</div>}
       {isQuizStarted && error && (
         <div style={{ color: "red" }}>Error: {error}</div>
       )}
       {isQuizStarted && !loading && !error && questions.length > 0 && (
-        <Quiz questions={questions} />
+        <Quiz questions={questions} fetchQuestions={fetchQuestions} />
       )}
     </>
   );
