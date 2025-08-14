@@ -2,12 +2,14 @@ import { useState } from "react";
 import "./App.css";
 import Splash from "./components/Splash";
 import Quiz from "./components/Quiz";
+import Confetti from "react-confetti";
 
 function App() {
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isQuizCorrect, setIsQuizCorrect] = useState(false);
 
   async function fetchQuestions() {
     setLoading(true);
@@ -50,12 +52,17 @@ function App() {
           <span className="loader"></span>
         </div>
       )}
+      {isQuizCorrect && <Confetti />}
       {!isQuizStarted && <Splash startQuiz={startQuiz} />}
       {isQuizStarted && error && (
         <div style={{ color: "red" }}>Error: {error}</div>
       )}
       {isQuizStarted && !loading && !error && questions.length > 0 && (
-        <Quiz questions={questions} fetchQuestions={fetchQuestions} />
+        <Quiz
+          questions={questions}
+          fetchQuestions={fetchQuestions}
+          setIsQuizCorrect={setIsQuizCorrect}
+        />
       )}
     </>
   );

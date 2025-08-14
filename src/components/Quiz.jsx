@@ -15,6 +15,10 @@ export default function Quiz(props) {
     />
   ));
 
+  const isAllCorrect = props.questions.every((question, index) => {
+    return selectedAnswers[index] === question.correctAnswer;
+  });
+
   function handleSelectAnswer(questionIndex, answer) {
     setSelectedAnswers((prev) => ({
       ...prev,
@@ -29,6 +33,11 @@ export default function Quiz(props) {
       setShowResults(false);
     } else {
       setShowResults(true);
+      if (isAllCorrect) {
+        props.setIsQuizCorrect(true);
+      } else {
+        return;
+      }
     }
   }
 
