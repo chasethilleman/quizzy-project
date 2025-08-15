@@ -21,6 +21,11 @@
   z-index: 0;
 }
 
+.splash img {
+  height: 250px;
+  margin-bottom: 2rem;
+}
+
 .splash::before {
   content: "";
   position: absolute;
@@ -70,16 +75,19 @@
   padding: 0.5rem 0;
 }
 
-.quiz-container button {
+.quiz-container button,
+.splash button {
   padding: 0.5rem 1rem;
   background-color: #ffffff;
   color: #293264;
   border: 1px solid #4d5b9e;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.25s;
 }
 
-.quiz-container button:hover {
+.quiz-container button:hover,
+.splash button:hover {
   background-color: #e7e7e7;
 }
 

@@ -1,8 +1,7 @@
 export default function Splash(props) {
   return (
     <div className="splash">
-      <h1>Welcome to Quizzy!</h1>
-      <p>Your go-to app for quizzes!</p>
+      <img src="src/assets/quizzy.png" alt="Quizzy Logo" />
       <button onClick={props.startQuiz}>Start Quiz</button>
     </div>
   );
